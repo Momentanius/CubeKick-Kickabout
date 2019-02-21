@@ -14,7 +14,7 @@ subdivide_depth = 0
 
 extents = Vector3( 10, 0.1, 7.5 )
 
-[node name="Pitch" type="StaticBody" index="0"]
+[node name="Pitch" type="StaticBody"]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0432451, 0 )
 input_ray_pickable = true
