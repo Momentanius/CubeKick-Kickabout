@@ -6,7 +6,7 @@
 
 material = ExtResource( 1 )
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
-size = Vector2( 20, 15 )
+size = Vector2( 19, 14 )
 subdivide_width = 0
 subdivide_depth = 0
 
