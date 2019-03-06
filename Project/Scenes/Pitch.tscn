@@ -42,7 +42,7 @@ lod_max_hysteresis = 0.0
 mesh = SubResource( 1 )
 skeleton = NodePath("..")
 material/0 = null
-_sections_unfolded = [ "Geometry" ]
+_sections_unfolded = [ "Geometry", "Transform" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="." index="1"]
 
