@@ -1,11 +1,12 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scenes/Pitch.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Ball.tscn" type="PackedScene" id=2]
 [ext_resource path="res://default_env.tres" type="Environment" id=3]
 [ext_resource path="res://Scenes/Cubedude.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Goal.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Models/Goal/GoalBlue.material" type="Material" id=6]
+[ext_resource path="res://Models/Cubedude/CubeDubeClube.material" type="Material" id=5]
+[ext_resource path="res://Scenes/Goal.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Models/Goal/GoalBlue.material" type="Material" id=7]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -31,7 +32,7 @@ subdivide_depth = 0
 
 points = PoolVector3Array( -1, 5, 8, 1, 5, -8, 1, 5, 8, -1, 5, -8, -1, -5, 8, 1, -5, -8, 1, -5, 8, -1, -5, -8, 1, 5, 8, -1, 5, -8, 1, 5, -8, -1, 5, 8, 1, -5, 8, -1, -5, -8, 1, -5, -8, -1, -5, 8, 1, 5, 8, -1, -5, 8, -1, 5, 8, 1, -5, 8, 1, 5, -8, -1, -5, -8, -1, 5, -8, 1, -5, -8 )
 
-[node name="Game" type="Spatial"]
+[node name="Game" type="Spatial" index="0"]
 
 [node name="Pitch" parent="." index="0" instance=ExtResource( 1 )]
 
@@ -41,6 +42,7 @@ _sections_unfolded = [ "Collision", "Transform", "Visibility", "material" ]
 [node name="Ball" parent="." index="1" instance=ExtResource( 2 )]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.13543, 0 )
+bounce = 1.0
 
 [node name="Camera" type="Camera" parent="." index="2"]
 
@@ -63,18 +65,31 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Cubedude" parent="Players" index="0" instance=ExtResource( 4 )]
 
+editor/display_folded = true
+transform = Transform( -0.00594521, 0, 0.999982, 0, 1, 0, -0.999982, 0, -0.00594521, -4.43804, 4.76837e-007, 0.00925875 )
+
+[node name="Cube Dube" parent="Players/Cubedude/Armature/Skeleton" index="0"]
+
+material/0 = ExtResource( 5 )
+_sections_unfolded = [ "material" ]
+
+[node name="Cubedude2" parent="Players" index="1" instance=ExtResource( 4 )]
+
+transform = Transform( -0.0679892, 0, -0.997686, 0, 1, 0, 0.997686, 0, -0.0679892, 4.59113, -0.0512667, 0.0162139 )
+player_id = 2
+
 [node name="Goals" type="Node" parent="." index="4"]
 
 editor/display_folded = true
 
-[node name="Goal1" parent="Goals" index="0" instance=ExtResource( 5 )]
+[node name="Goal1" parent="Goals" index="0" instance=ExtResource( 6 )]
 
 transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, 7.80944, 0.282418, -0.241971 )
 _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="Goal" parent="Goals/Goal1" index="0"]
 
-material/0 = ExtResource( 6 )
+material/0 = ExtResource( 7 )
 _sections_unfolded = [ "material" ]
 
 [node name="InterpolatedCamera" type="InterpolatedCamera" parent="Goals/Goal1/Goal" index="1"]
@@ -95,7 +110,7 @@ target = NodePath("")
 speed = 1.0
 enabled = false
 
-[node name="Goal2" parent="Goals" index="1" instance=ExtResource( 5 )]
+[node name="Goal2" parent="Goals" index="1" instance=ExtResource( 6 )]
 
 transform = Transform( -4.37114e-008, 0, -1, 0, 1, 0, 1, 0, -4.37114e-008, -7.96785, 0.282418, -0.404334 )
 _sections_unfolded = [ "Collision", "Transform" ]
@@ -405,4 +420,5 @@ directional_shadow_max_distance = 200.0
 _sections_unfolded = [ "Light", "Shadow" ]
 
 
+[editable path="Players/Cubedude"]
 [editable path="Goals/Goal1"]
