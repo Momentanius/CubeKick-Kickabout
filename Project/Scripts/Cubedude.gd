@@ -1,6 +1,7 @@
 extends KinematicBody
 
 var motion = Vector3()
+var can_move = true
 
 const UP = Vector3(0,1,0)
 const GRAVITY = -5
@@ -10,12 +11,18 @@ export var player_id = 1
 export var speed = 10
 
 func _physics_process(delta):
-	move()	
+	if can_move:
+		animate()
+		move()	
 	fall()
 
 func _process(delta):
 	face_forward()
-	animate()
+
+func reset():
+	var my_spawn = get_tree().get_root().find_node(('Player%sSpawn' % player_id), true, false) #concatenando
+	translation = my_spawn.translation
+	can_move(true)
 
 # up_%s % player_id concatena uma string com uma variável
 func move():
@@ -35,6 +42,9 @@ func move():
 	
 	move_and_slide(motion.normalized() * speed	, UP)
 	
+
+func can_move(value):
+	can_move = value
 
 func fall():
 	if is_on_floor():
