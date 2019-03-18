@@ -13,8 +13,9 @@ sun_energy = 16.0
 background_mode = 1
 background_sky = SubResource( 1 )
 background_energy = 0.0
-ambient_light_color = Color( 0.202118, 0.289063, 0.274796, 1 )
+ambient_light_color = Color( 0.00784314, 0.239216, 0.2, 1 )
 ambient_light_energy = 0.75
 ambient_light_sky_contribution = 0.0
+ss_reflections_enabled = true
 glow_enabled = true
 

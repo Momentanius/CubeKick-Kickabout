@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Pitch.tscn" type="PackedScene" id=2]
@@ -9,6 +9,13 @@
 [ext_resource path="res://Scenes/Goal.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Models/Goal/GoalBlue.material" type="Material" id=8]
 [ext_resource path="res://Scenes/GUI.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Wagon.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/floor.material" type="Material" id=11]
+[ext_resource path="res://Scenes/background.material" type="Material" id=12]
+[ext_resource path="res://Scenes/skirtingboard.material" type="Material" id=13]
+[ext_resource path="res://Models/toys/Bear/bear.dae" type="PackedScene" id=14]
+[ext_resource path="res://Models/toys/Blocks/Blocks.dae" type="PackedScene" id=15]
+[ext_resource path="res://Models/Advert/Advert.dae" type="PackedScene" id=16]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 1.0
@@ -27,6 +34,14 @@ size = Vector3( 2, 10, 16 )
 
 [sub_resource type="ConvexPolygonShape" id=6]
 points = PoolVector3Array( -1, 5, 8, 1, 5, -8, 1, 5, 8, -1, 5, -8, -1, -5, 8, 1, -5, -8, 1, -5, 8, -1, -5, -8, 1, 5, 8, -1, 5, -8, 1, 5, -8, -1, 5, 8, 1, -5, 8, -1, -5, -8, 1, -5, -8, -1, -5, 8, 1, 5, 8, -1, -5, 8, -1, 5, 8, 1, -5, 8, 1, 5, -8, -1, -5, -8, -1, 5, -8, 1, -5, -8 )
+
+[sub_resource type="PlaneMesh" id=7]
+size = Vector2( 100, 100 )
+
+[sub_resource type="PlaneMesh" id=8]
+size = Vector2( 75, 50 )
+
+[sub_resource type="CubeMesh" id=9]
 
 [node name="Game" type="Spatial"]
 script = ExtResource( 1 )
@@ -189,6 +204,7 @@ shadow_color = Color( 0.288734, 0.219727, 0.351563, 1 )
 one_shot = true
 
 [node name="StartPositions" type="Node" parent="."]
+editor/display_folded = true
 
 [node name="BallSpawn" type="Position3D" parent="StartPositions"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.169382, 2.35995, 0 )
@@ -201,6 +217,34 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.55038, 1.60716, 0 )
 
 [node name="GUI" parent="." instance=ExtResource( 9 )]
 
+[node name="Decor" type="Node" parent="."]
+
+[node name="Wagon" parent="Decor" instance=ExtResource( 10 )]
+transform = Transform( 2.69018, 0, -4.21461, 0, 5, 0, 4.21461, 0, 2.69018, 11.9266, 0, -3.8183 )
+
+[node name="Floor" type="MeshInstance" parent="Decor"]
+mesh = SubResource( 7 )
+material/0 = ExtResource( 11 )
+
+[node name="Backwall" type="MeshInstance" parent="Decor"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 1.12426, -13.7159 )
+mesh = SubResource( 8 )
+material/0 = ExtResource( 12 )
+
+[node name="SkirtingBoard" type="MeshInstance" parent="Decor"]
+transform = Transform( -36.0588, 0, 0, 0, 1, 0, 0, 0, 3.35991, 0, 0.987937, -11.1797 )
+mesh = SubResource( 9 )
+material/0 = ExtResource( 13 )
+
+[node name="Bear" parent="Decor" instance=ExtResource( 14 )]
+transform = Transform( -0.977622, -0.0644152, -0.200264, -0.0734094, 0.996585, 0.0378071, 0.197144, 0.0516623, -0.979012, -4.49222, 2.1161, -10.673 )
+
+[node name="Cube" parent="Decor" instance=ExtResource( 15 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.8573, 1.15118, 1.84277 )
+
+[node name="Scene Root" parent="Decor" instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 0, 0, 0.691664, -0.722219, 0, 0.722219, 0.691664, 0, 5.63144, -13.4038 )
+
 [connection signal="body_entered" from="Goals/Goal1/GoalDetection" to="." method="_on_GoalDetection_body_entered" binds= [ 2 ]]
 [connection signal="body_entered" from="Goals/Goal2/GoalDetection" to="." method="_on_GoalDetection_body_entered" binds= [ 1 ]]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
@@ -210,3 +254,5 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.55038, 1.60716, 0 )
 [editable path="Goals/Goal1"]
 
 [editable path="Goals/Goal2"]
+
+[editable path="Decor/Bear"]
