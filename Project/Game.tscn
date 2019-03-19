@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Pitch.tscn" type="PackedScene" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Models/toys/Bear/bear.dae" type="PackedScene" id=14]
 [ext_resource path="res://Models/toys/Blocks/Blocks.dae" type="PackedScene" id=15]
 [ext_resource path="res://Models/Advert/Advert.dae" type="PackedScene" id=16]
+[ext_resource path="res://SFX/airhorn.ogg" type="AudioStream" id=17]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 1.0
@@ -244,6 +245,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.8573, 1.15118, 1.84277 )
 
 [node name="Scene Root" parent="Decor" instance=ExtResource( 16 )]
 transform = Transform( 1, 0, 0, 0, 0.691664, -0.722219, 0, 0.722219, 0.691664, 0, 5.63144, -13.4038 )
+
+[node name="AirHorn" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )
+volume_db = -18.227
 
 [connection signal="body_entered" from="Goals/Goal1/GoalDetection" to="." method="_on_GoalDetection_body_entered" binds= [ 2 ]]
 [connection signal="body_entered" from="Goals/Goal2/GoalDetection" to="." method="_on_GoalDetection_body_entered" binds= [ 1 ]]
